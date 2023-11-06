@@ -1,0 +1,54 @@
+
+application {
+  config {
+    baseName scBookKeeping,
+    applicationType monolith,
+    packageName com.sccodefactory.scbookkeeping,
+    authenticationType jwt,
+    prodDatabaseType mysql,
+    clientFramework angular
+  }
+  entities *
+}
+
+entity Transaction{
+	nr Integer
+    amount Integer
+    description String
+    kstst KostnadsStalle
+    curr Currency
+    vend Vendor
+    vat Vat
+    }
+
+entity Currency {}
+
+entity Country {}
+
+entity Vat {}
+
+entity Vendor {}
+
+entity KostnadsStalle {}
+
+relationship OneToMany {
+  Transaction to Vat
+}
+relationship OneToMany {
+  Transaction to Currency
+}
+relationship OneToMany {
+  Transaction to Vendor
+}
+ relationship OneToMany {
+  Transaction to KostnadsStalle
+}   
+ relationship OneToMany {
+  Vat to Country
+}   
+ relationship OneToMany {
+  Currency to Country
+} 
+ relationship OneToMany {
+  Vendor to Country
+} 
